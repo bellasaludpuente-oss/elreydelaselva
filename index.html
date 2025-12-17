@@ -1,0 +1,80 @@
+from flask import Flask, render_template_string
+
+app = Flask(__name__)
+
+HTML = """
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Te Amo Dina</title>
+<style>
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+#p1, #p2 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#p1 {
+    background: black;
+}
+#p2 {
+    background-image: url('https://i.imgur.com/0Z8FQyK.jpg');
+    background-size: cover;
+    display: none;
+    flex-direction: column;
+}
+button {
+    background: linear-gradient(45deg,#ff4500,#ff8c00);
+    color: white;
+    font-size: 30px;
+    padding: 20px 60px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+h1 {
+    color: white;
+    font-size: 60px;
+    margin-bottom: 40px;
+}
+</style>
+</head>
+<body>
+
+<div id="p1">
+    <button onclick="mostrar()">ENTRAR</button>
+</div>
+
+<div id="p2">
+    <h1>🌸 Te amo Dina 🌸</h1>
+    <button onclick="volver()">Regresar</button>
+</div>
+
+<script>
+function mostrar() {
+    p1.style.display="none";
+    p2.style.display="flex";
+}
+function volver() {
+    p2.style.display="none";
+    p1.style.display="flex";
+}
+</script>
+
+</body>
+</html>
+"""
+
+@app.route("/")
+def inicio():
+    return render_template_string(HTML)
+
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port=5000)
